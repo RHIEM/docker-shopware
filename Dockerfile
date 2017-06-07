@@ -15,12 +15,15 @@ RUN apt-get update \
     phpmyadmin \
     unzip \
     bzip2 \
+	git \
+	curl \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 # Configure Apache
 # COPY files/apache-shopware.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite \
     && sed --in-place "s/^upload_max_filesize.*$/upload_max_filesize = 10M/" /etc/php/7.0/apache2/php.ini \
+	&& sed --in-place "s/^display_errors.*$/display_errors = On/" /etc/php/7.0/apache2/php.ini \
     && sed --in-place "s/^memory_limit.*$/memory_limit = 256M/" /etc/php/7.0/apache2/php.ini \
     && phpenmod mcrypt
 
@@ -39,10 +42,8 @@ RUN tar xvzfC /tmp/php7-linux-x86-64-beta8.tgz /tmp/ \
 	&& echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_x86-64_7.0b8.so" > /etc/php/7.0/apache2/conf.d/00-ioncube.ini \
 	&& echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_x86-64_7.0b8.so" > /etc/php/7.0/cli/conf.d/00-ioncube.ini
 
-VOLUME ["/var/www/html"]
-
 COPY files/entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-EXPOSE 80
+EXPOSE 80 443
