@@ -15,8 +15,9 @@ RUN apt-get update \
     phpmyadmin \
     unzip \
     bzip2 \
-	git \
-	curl \
+    git \
+    curl \
+    ant \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 # Configure Apache
