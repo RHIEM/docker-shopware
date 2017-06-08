@@ -16,7 +16,7 @@ app.host=$SHOPWAREBUILD_APP_HOST
 EOF
 	ant -f /var/www/html/build/build.xml  $SHOPWAREBUILD_ANT_TARGET
 	
-	if [ $SHOPWAREBUILD_DEMO_ZIP = "" ]
+	if [ $SHOPWAREBUILD_DEMO_ZIP = "" ]; then
 		echo "Loading Demo-Data"
 		curl -Lo /var/www/html/demo_data.zip http://releases.s3.shopware.com/test_images.zip #$SHOPWAREBUILD_DEMO_ZIP
 		unzip /var/www/html/demo_data.zip
