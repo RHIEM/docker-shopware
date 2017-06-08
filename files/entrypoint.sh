@@ -15,8 +15,21 @@ app.path=$SHOPWAREBUILD_APP_PATH
 app.host=$SHOPWAREBUILD_APP_HOST
 EOF
 	ant -f /var/www/html/build/build.xml  $SHOPWAREBUILD_ANT_TARGET
-    echo "done"
+	
+	if [ $SHOPWAREBUILD_DEMO_ZIP = "" ]
+		echo "Loading Demo-Data"
+		curl -Lo /var/www/html/demo_data.zip http://releases.s3.shopware.com/test_images.zip #$SHOPWAREBUILD_DEMO_ZIP
+		unzip /var/www/html/demo_data.zip
+		rm /var/www/html/demo_data.zip
+	fi
+    echo "done building"
 fi
 
+echo -n "Setting permissions..."
+	chown www-data:www-data /var/www/html/*
+done
+echo "done"
+
+echo "Running apache"
 source /etc/apache2/envvars
 exec apache2 -D FOREGROUND
