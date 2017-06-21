@@ -18,6 +18,7 @@ RUN apt-get update \
     git \
     curl \
     ant \
+	php-xdebug\
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 # Configure Apache
@@ -41,10 +42,14 @@ RUN tar xvzfC /tmp/php7-linux-x86-64-beta8.tgz /tmp/ \
     && cp /tmp/ioncube_loader_lin_x86-64_7.0b8.so /usr/local/ioncube \
     && rm -rf /tmp/ioncube \
 	&& echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_x86-64_7.0b8.so" > /etc/php/7.0/apache2/conf.d/00-ioncube.ini \
-	&& echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_x86-64_7.0b8.so" > /etc/php/7.0/cli/conf.d/00-ioncube.ini
+	&& echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_x86-64_7.0b8.so" > /etc/php/7.0/cli/conf.d/00-ioncube.ini \
+	&& echo "xdebug.remote_enable = 1" >> /etc/php/7.0/apache2/php.ini \
+	&& echo "xdebug.remote_connect_back = 1" >> /etc/php/7.0/apache2/php.ini \
+	&& echo "xdebug.remote_port = 9000" >> /etc/php/7.0/apache2/php.ini	
+	
 
 COPY files/entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-EXPOSE 80 443
+EXPOSE 80 443 9000
