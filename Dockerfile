@@ -35,14 +35,14 @@ RUN a2enmod rewrite \
 
 # Install ioncube
 # COPY files/ioncube_loaders_lin_x86-64.tar.bz2 /tmp/ioncube_loaders_lin_x86-64.tar.bz2
-ADD https://www.ioncube.com/php7-linux-x86-64-beta8.tgz /tmp/
-RUN tar xvzfC /tmp/php7-linux-x86-64-beta8.tgz /tmp/ \
-    && rm /tmp/php7-linux-x86-64-beta8.tgz \
+ADD https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz /tmp/
+RUN tar xvzfC /tmp/ioncube_loaders_lin_x86-64.tar.gz /tmp/ \
+    && rm /tmp/ioncube_loaders_lin_x86-64.tar.gz \
     && mkdir -p /usr/local/ioncube \
-    && cp /tmp/ioncube_loader_lin_x86-64_7.0b8.so /usr/local/ioncube \
+    && cp /tmp/ioncube/ioncube_loader_lin_7.0.so /usr/local/ioncube \
     && rm -rf /tmp/ioncube \
-	&& echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_x86-64_7.0b8.so" > /etc/php/7.0/apache2/conf.d/00-ioncube.ini \
-	&& echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_x86-64_7.0b8.so" > /etc/php/7.0/cli/conf.d/00-ioncube.ini \
+	&& echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_7.0.so" > /etc/php/7.0/apache2/conf.d/00-ioncube.ini \
+	&& echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_7.0.so" > /etc/php/7.0/cli/conf.d/00-ioncube.ini \
 	&& echo "xdebug.remote_enable = 1" >> /etc/php/7.0/apache2/php.ini \
 	&& echo "xdebug.remote_connect_back = 1" >> /etc/php/7.0/apache2/php.ini \
 	&& echo "xdebug.remote_port = 9000" >> /etc/php/7.0/apache2/php.ini	
