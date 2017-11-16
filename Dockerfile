@@ -19,6 +19,8 @@ RUN apt-get update \
     php5.6-xdebug \
     php5.6-mbstring \
     php5.6-simplexml \
+    php5.6-mysql \
+    php5.6-xml \
     phpmyadmin \
     unzip \
     bzip2 \
