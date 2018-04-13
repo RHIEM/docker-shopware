@@ -24,6 +24,7 @@ RUN apt-get update \
 # Configure Apache
 # COPY files/apache-shopware.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite \
+    && a2enmod ssl \
     && sed --in-place "s/^upload_max_filesize.*$/upload_max_filesize = 10M/" /etc/php/7.0/apache2/php.ini \
 	&& sed --in-place "s/^display_errors.*$/display_errors = On/" /etc/php/7.0/apache2/php.ini \
     && sed --in-place "s/^memory_limit.*$/memory_limit = 256M/" /etc/php/7.0/apache2/php.ini \
