@@ -29,7 +29,8 @@ RUN a2enmod rewrite \
 	&& sed --in-place "s/^display_errors.*$/display_errors = On/" /etc/php/7.0/apache2/php.ini \
     && sed --in-place "s/^memory_limit.*$/memory_limit = 256M/" /etc/php/7.0/apache2/php.ini \
     && phpenmod mcrypt
-
+    
+    
 # Install Shopware
 # COPY files/install_5.1.6_04ec396ac8d2fa8c1e088bc2bd2c8132ab56c270.zip /tmp/shopware.zip
 # ADD http://releases.s3.shopware.com.s3.amazonaws.com/install_5.2.4_b1a52d04c9c8cd60205c181eb7d51aa5a516bff0.zip /tmp/shopware.zip
