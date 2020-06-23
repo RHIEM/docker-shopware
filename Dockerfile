@@ -11,6 +11,7 @@ RUN apt-get update \
     php-curl \
     php-gd \
     php-zip \
+    php7.2-intl \
     phpmyadmin \
     unzip \
     bzip2 \
