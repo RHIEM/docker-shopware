@@ -43,9 +43,12 @@ RUN a2enmod rewrite \
     && sed --in-place "s/^display_errors.*$/display_errors = On/" /etc/php/7.4/apache2/php.ini \
     && sed --in-place "s/^memory_limit.*$/memory_limit = 256M/" /etc/php/7.4/apache2/php.ini
 
-RUN echo "xdebug.remote_enable = 1" >> /etc/php/7.4/apache2/php.ini \
-    && echo "xdebug.remote_connect_back = 1" >> /etc/php/7.4/apache2/php.ini \
-    && echo "xdebug.remote_port = 9000" >> /etc/php/7.4/apache2/php.ini
+
+RUN echo "xdebug.mode = off" >> /etc/php/7.4/apache2/php.ini \
+    && echo "xdebug.max_nesting_level = 1000" >> /etc/php/7.4/apache2/php.ini \
+    && echo "xdebug.start_with_request=yes" >> /etc/php/7.4/apache2/php.ini
+    && echo "xdebug.client_host=192.168.99.1" >> /etc/php/7.4/apache2/php.ini
+    && echo "xdebug.client_port = 9000" >> /etc/php/7.4/apache2/php.ini
 
 # Install node & npm
 RUN apt-get clean && apt-get update
