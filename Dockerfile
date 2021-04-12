@@ -43,7 +43,7 @@ RUN a2enmod rewrite \
     && sed --in-place "s/^upload_max_filesize.*$/upload_max_filesize = 10M/" /etc/php/7.4/apache2/php.ini \
     && sed --in-place "s/^display_errors.*$/display_errors = On/" /etc/php/7.4/apache2/php.ini \
     && sed --in-place "s/^memory_limit.*$/memory_limit = 256M/" /etc/php/7.4/apache2/php.ini
-
+    && sed --in-place "s/^max_execution_time.*$/max_execution_time = 300/" /etc/php/7.4/apache2/php.ini
 
 RUN echo "xdebug.mode = off" >> /etc/php/7.4/apache2/php.ini \
     && echo "xdebug.max_nesting_level = 1000" >> /etc/php/7.4/apache2/php.ini \
