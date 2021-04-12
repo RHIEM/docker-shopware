@@ -34,6 +34,7 @@ RUN apt-get update \
     git \
     vim \
     less \
+    ant \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 # Configure Apache
