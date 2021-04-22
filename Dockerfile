@@ -26,7 +26,7 @@ RUN apt-get update \
     php7.4-gd \
     php7.4-soap \
     php-apcu \
-    php-xdebug \
+    php7.4-xdebug \
     curl \
     zip \
     unzip \
@@ -45,7 +45,7 @@ RUN a2enmod rewrite \
     && sed --in-place "s/^memory_limit.*$/memory_limit = 256M/" /etc/php/7.4/apache2/php.ini \
     && sed --in-place "s/^max_execution_time.*$/max_execution_time = 300/" /etc/php/7.4/apache2/php.ini
 
-RUN echo "xdebug.mode = off" >> /etc/php/7.4/apache2/php.ini \
+RUN echo "xdebug.mode = debug" >> /etc/php/7.4/apache2/php.ini \
     && echo "xdebug.max_nesting_level = 1000" >> /etc/php/7.4/apache2/php.ini \
     && echo "xdebug.start_with_request=yes" >> /etc/php/7.4/apache2/php.ini \
     && echo "xdebug.client_host=192.168.99.1" >> /etc/php/7.4/apache2/php.ini \
