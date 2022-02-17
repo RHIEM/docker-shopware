@@ -53,7 +53,7 @@ RUN echo "xdebug.mode = debug" >> /etc/php/7.4/apache2/php.ini \
 
 # Install node & npm
 RUN apt-get clean && apt-get update
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
 RUN apt-get install -y nodejs
 
 
