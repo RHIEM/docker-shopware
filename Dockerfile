@@ -37,6 +37,8 @@ RUN apt-get update \
     ant \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
+RUN update-alternatives --set php /usr/bin/php7.4
+
 # Configure Apache
 RUN a2enmod rewrite \
     && a2enmod ssl \
